@@ -31,11 +31,12 @@ pipeline {
       steps{
         sh "chmod +x modifytag.sh"
 //        sh "./modifytag.sh $BUILD_NUMBER"
-        sh "./modifytag.sh 9"
+        sh "./modifytag.sh 10"
         sshagent(['local-k8s']) {
           sh "scp -o StrictHostKeyChecking=no service.yml deploy.yml kadmin@192.168.7.123:/home/kadmin/infrrd/"
           script {
             sh "ssh kadmin@192.168.7.123 kubectl apply -f /home/kadmin/infrrd/."
+            sh "ssh kadmin@192.168.7.123 kubectl set selector svc/blue-green-svc color=green"
           }
         }
       }
