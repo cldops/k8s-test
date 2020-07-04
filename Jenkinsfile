@@ -9,7 +9,7 @@ pipeline {
       steps{
         sh "echo $DOCKER_TAG"
         sh "echo $PWD"
-        sh "docker build -t cldops/infrrd:${DOCKER_TAG} $PWD"
+        sh "docker build -t 'cldops/infrrd:${DOCKER_TAG}' $PWD"
       }
     }
   }
