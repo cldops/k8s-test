@@ -27,7 +27,7 @@ pipeline {
       }
     }*/
 
-/*    stage('deploy image'){
+    stage('deploy image'){
       steps{
         sh "chmod +x modifytag.sh"
 //        sh "./modifytag.sh $BUILD_NUMBER"
@@ -39,7 +39,7 @@ pipeline {
           }
         }
       }
-    }*/
+    }
 
 /*    stage('remove image from local') {
       steps{
