@@ -6,13 +6,14 @@ metadata:
 spec:
   replicas: 2
   minReadySeconds: 10
-  metadata:
-    labels:
-      app=blue-green
-      color=green
   template:
-  spec:
-  - name: green-app
-    image: cldops/infrrd:tagstring
-    ports:
-      - containerPort: 80
+    metadata:
+      labels:
+        app: blue-green
+        color: green
+    spec:
+      containers:
+      - name: green-app
+        image: cldops/fptnginx:tagstring
+        ports:
+          - containerPort: 80
