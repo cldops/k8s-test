@@ -2,7 +2,7 @@ pipeline {
   agent any
   environment {
     DOCKER_TAG = getDockerTag()
-    PWD = `pwd`
+    PWD = getPwd()
   }
   stages {
     stage('test tag') {
@@ -18,4 +18,9 @@ pipeline {
 def getDockerTag(){
   def tag = sh script: 'git rev-parse HEAD', returnStdout: true
   return tag
+}
+
+def getPwd(){
+  def pwd = sh script: echo `pwd`, returnStdout: true
+  return pwd
 }
