@@ -19,12 +19,15 @@ pipeline {
     stage('push image'){
         steps{
           script{
+            withCredentials([usernamePassword( credentialsId: 'registryCredential', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
             docker.withRegistry( '', registryCredential ) {
+              sh "docker login -u ${USERNAME} -p ${PASSWORD}"
               app.push("${env.BUILD_NUMBER}")
               app.push("latest")
             }
           }
         }
+      }
     }
 
 /*    stage('deploy image'){
