@@ -2,14 +2,14 @@ pipeline {
   agent any
   environment {
     DOCKER_TAG = getDockerTag()
-    PWD = getPwd()
+//    PWD = getPwd()
   }
   stages {
     stage('test tag') {
       steps{
         sh "echo $DOCKER_TAG"
-        sh "echo $PWD"
-        sh "docker build -t cldops/infrrd:${DOCKER_TAG} $PWD"
+//        sh "echo $PWD"
+        sh "docker build . -t cldops/infrrd:${DOCKER_TAG}"
       }
     }
   }
@@ -20,7 +20,7 @@ def getDockerTag(){
   return tag
 }
 
-def getPwd(){
+/*def getPwd(){
   def pwd = sh script: 'pwd', returnStdout: true
   return pwd
-}
+}*/
