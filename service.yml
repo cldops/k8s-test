@@ -9,6 +9,6 @@ spec:
   - port: 80
     nodePort: 30001
     protocol: TCP
-  Selector:
+  selector:
     app: blue-green
     color: blue
