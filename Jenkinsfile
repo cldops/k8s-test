@@ -1,11 +1,11 @@
 pipeline {
-  agent any
   environment {
     registry = 'cldops/fptnginx'
-    registryCredential = 'dockerhub'
+    registryCredential = 'jenkins-dockerhub'
     app = ''
   }
 
+  agent any
   stages {
 
     stage('Build image') {
