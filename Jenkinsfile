@@ -11,7 +11,7 @@ pipeline {
     stage('Build image') {
       steps{
         script{
-          app = docker.build(--no-cache registry + ":$BUILD_NUMBER")
+          app = docker.build(registry + ":$BUILD_NUMBER")
         }
       }
     }
