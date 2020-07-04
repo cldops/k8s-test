@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    registry = 'cldops/infrrd'
+    registry = 'cldops/fptnginx'
     registryCredential = 'docker-hub'
     app = ''
   }
@@ -16,7 +16,7 @@ pipeline {
       }
     }
 
-/*    stage('push image'){
+    stage('push image'){
         steps{
           script{
             docker.withRegistry( '', registryCredential ) {
@@ -25,7 +25,7 @@ pipeline {
             }
           }
         }
-    }*/
+    }
 
 /*    stage('deploy image'){
       steps{
