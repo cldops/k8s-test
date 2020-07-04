@@ -1,7 +1,7 @@
 pipeline {
   environment {
     registry = 'cldops/fptnginx'
-    registryCredential = 'dockerhub'
+    registryCredential = 'jenkins-dockerhub'
     app = ''
   }
 
