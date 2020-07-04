@@ -2,7 +2,7 @@ pipeline {
   agent any
   environment {
     registry = 'cldops/infrrd'
-    registryCredential = 'docker-hub'
+    registryCredential = 'jenkins-dockerhub'
     app = ''
   }
 
@@ -27,7 +27,7 @@ pipeline {
       }
     }
 
-/*    stage('deploy image'){
+    stage('deploy image'){
       steps{
         sh "chmod +x modifytag.sh"
         sh "./modifytag.sh $BUILD_NUMBER"
@@ -38,7 +38,13 @@ pipeline {
           }
         }
       }
-    }*/
+    }
+
+    stage('remove image from local') {
+      steps{
+        sh "docker rmi $registry:$BUILD_NUMBER"
+      }
+    }
 
   }
 }
