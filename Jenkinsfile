@@ -21,6 +21,6 @@ def getDockerTag(){
 }
 
 def getPwd(){
-  def pwd = sh script: echo `pwd`, returnStdout: true
+  def pwd = sh script: pwd, returnStdout: true
   return pwd
 }
