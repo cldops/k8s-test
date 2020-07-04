@@ -2,7 +2,7 @@ pipeline {
   agent any
   environment {
     registry = 'cldops/fptnginx'
-//    registryCredential = 'docker-hub'
+    registryCredential = 'dockerhub'
     app = ''
   }
 
@@ -19,15 +19,15 @@ pipeline {
     stage('push image'){
         steps{
           script{
-            withCredentials([usernamePassword( credentialsId: 'docker-hub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-            docker.withRegistry( '', 'docker-hub' ) {
-              sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+//            withCredentials([usernamePassword( credentialsId: 'docker-hub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+            docker.withRegistry( '', registryCredential ) {
+//              sh "docker login -u ${USERNAME} -p ${PASSWORD}"
               app.push("${env.BUILD_NUMBER}")
               app.push("latest")
             }
           }
         }
-      }
+//      }
     }
 
 /*    stage('deploy image'){
