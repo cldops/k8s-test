@@ -9,22 +9,22 @@ pipeline {
   stages {
 
     stage('Build image') {
-      script{
-        steps{
+      steps{
+        script{
           app = docker.build(registry + ":$BUILD_NUMBER")
         }
       }
     }
 
 /*    stage('push image'){
-      script{
         steps{
-          docker.withRegistry( '', registryCredential ) {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+          script{
+            docker.withRegistry( '', registryCredential ) {
+              app.push("${env.BUILD_NUMBER}")
+              app.push("latest")
+            }
           }
         }
-      }
     }*/
 
 /*    stage('deploy image'){
