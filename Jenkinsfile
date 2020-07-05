@@ -8,7 +8,7 @@ pipeline {
   agent any
   stages {
 
-/*    stage('Build image') {
+    stage('Build image') {
       steps{
         script{
           app = docker.build(registry + ":$BUILD_NUMBER")
@@ -25,28 +25,28 @@ pipeline {
           }
         }
       }
-    }*/
+    }
 
     stage('deploy image'){
       steps{
         sh "chmod +x modifytag.sh"
-//        sh "./modifytag.sh $BUILD_NUMBER"
-        sh "./modifytag.sh 10"
-        sshagent(['local-k8s']) {
-          sh "scp -o StrictHostKeyChecking=no service.yml deploy.yml kadmin@192.168.7.123:/home/kadmin/infrrd/"
+        sh "./modifytag.sh $BUILD_NUMBER"
+//        sh "./modifytag.sh 10"
+        sshagent(['kops']) {
+          sh "scp -o StrictHostKeyChecking=no service.yml deploy.yml centos@100.25.37.71:/home/centos/mysetup/"
           script {
-            sh "ssh kadmin@192.168.7.123 kubectl apply -f /home/kadmin/infrrd/."
-            sh "ssh kadmin@192.168.7.123 kubectl set selector svc/blue-green-svc color=green"
+            sh "ssh centos@100.25.37.71 kubectl apply -f /home/centos/mysetup/."
+//            sh "ssh centos@100.25.37.71 kubectl set selector svc/blue-green-svc color=green"
           }
         }
       }
     }
 
-/*    stage('remove image from local') {
+    stage('remove image from local') {
       steps{
         sh "docker rmi $registry:$BUILD_NUMBER"
       }
-    }*/
+    }
 
   }
 }
