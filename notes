@@ -1,0 +1,5 @@
+Steps to follow before deploying green app
+Modify modifytag.sh file to use green template
+Modify Dockerfile to use green html file
+Modify Jenkinsfile to use green selector
+commit these changes to github and build the jenkins job to modify kops cluster configuration
